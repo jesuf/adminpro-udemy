@@ -10,6 +10,7 @@ import { Graficas1Component } from './graficas1/graficas1.component';
 import { PagesComponent } from './pages.component';
 import { FormsModule } from "@angular/forms";
 import { IncrementadorComponent } from '../minicomponents/incrementador/incrementador.component';
+import { GraficoDonaComponent } from '../minicomponents/grafico-dona/grafico-dona.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { IncrementadorComponent } from '../minicomponents/incrementador/incremen
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
-        IncrementadorComponent
+        IncrementadorComponent,
+        GraficoDonaComponent
     ],
     imports: [
         SharedModule,
@@ -27,9 +29,9 @@ import { IncrementadorComponent } from '../minicomponents/incrementador/incremen
         ChartsModule
     ],
     exports: [
-        DashboardComponent,
+        /*DashboardComponent,
         ProgressComponent,
-        Graficas1Component
+        Graficas1Component*/
     ],
     providers: []
 })
