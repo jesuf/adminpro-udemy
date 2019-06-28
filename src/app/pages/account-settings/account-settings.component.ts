@@ -28,11 +28,12 @@ export class AccountSettingsComponent implements AfterViewInit {
 
     this.settingsService.establecerTema(nombreTema);
 
-    this.seleccionarElemento(evento.target);
+    // EventTarget es una interfaz de la que hereda Element por lo que podemos castear el tipo a Element
+    this.seleccionarElemento(evento.target as Element);
   }
 
-  // EventTarget es una interfaz de la que hereda Element por lo que podemos usarla para recibir ambas cosas
-  seleccionarElemento(elemento: EventTarget) {
+
+  seleccionarElemento(elemento: Element) {
     // recorremos todos los enlaces y les quitamos la clase working
     this.elementosEnlace.forEach((elemRef) => this.settingsService.renderer.removeClass(elemRef.nativeElement, 'working'));
 
