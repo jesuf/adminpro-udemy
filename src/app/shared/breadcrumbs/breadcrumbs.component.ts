@@ -14,7 +14,7 @@ export class BreadcrumbsComponent implements OnInit {
   titulo: string;
 
   constructor(private router: Router, private title: Title, private meta: Meta) {
-
+    this.router.events.subscribe(evento => '');
     this.getDataFromRoute().subscribe(
       data => {
         this.titulo = data.titulo;
@@ -36,10 +36,10 @@ export class BreadcrumbsComponent implements OnInit {
     return this.router.events.pipe(
       // filtramos que el evento sea del tipo que queremos ya que se reciben de mas tipos
       filter(evento => evento instanceof ActivationEnd),
-      // filtramos que el evento no tenga hijos, es decir, ya que se reciben 2 eventos de tipo ActivationEnd,
-      // tenemos que coger el que viene de pages-routing y no de app-routing.
-      // app-routing manda a al pages-routing, que se encarga de mostrar PagesComponent y a su vez manda a la pagina hija
-      // Este componente se carga en PagesComponent por lo que se carga 2 veces, de ahi que tengamos que separar la que nos interesa
+      // filtramos que el evento no tenga hijos ya que al cargar la página entera se reciben 2 eventos de tipo ActivationEnd
+      // (un evento de activacion de ruta para el componente PagesComponent que se carga en el router-outlet de app.component.html
+      // y otro para el componente hijo DashboardComponent, ProgressComponent, etc que se carga en el router-outlet de pages.component.html)
+      // Por tanto, tenemos que coger el del componente hijo, o sea, el que no tiene hijo.
       filter((evento: ActivationEnd) => evento.snapshot.firstChild === null),
       // sacamos solo la propiedad data que es la que necesitamos para recoger el titulo
       map((evento: ActivationEnd) => evento.snapshot.data)

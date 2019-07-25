@@ -11,15 +11,21 @@
                         <li><a href="javascript:void()">My Balance</a></li>
                         <li><a href="javascript:void()">Inbox</a></li>
                         <li><a routerLinkActive="active" routerLink="/account">Account Setting</a></li>
-                        <li><a routerLink="/login">Logout</a></li>
+                        <li><a href="#" (click)="usuarioService.logout()">Logout</a></li>
                     </ul>
                 </li>
                 <li class="nav-devider"></li>
                 <li class="nav-small-cap">PERSONAL</li>
-                <li *ngFor="let menu of sidebarService.menu"> 
-                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i><span class="hide-menu">{{menu.titulo}} <span class="label label-rouded label-themecolor pull-right">{{menu.submenu.length}}</span></span></a>
+                <li *ngFor="let menu of sidebarService.menus"> 
+                    <a class="has-arrow waves-effect waves-dark" aria-expanded="false">
+                        <i [class]="menu.icono"></i>
+                        <span class="hide-menu">
+                            {{menu.titulo}}
+                            <span class="label label-rouded label-themecolor pull-right"> {{menu.submenus.length}}</span>
+                        </span>
+                    </a>
                     <ul aria-expanded="false" class="collapse">
-                        <li *ngFor="let submenu of menu.submenu">
+                        <li *ngFor="let submenu of menu.submenus">
                             <a routerLinkActive="active" routerLink="{{submenu.url}}">{{submenu.titulo}}</a>
                         </li>
                     </ul>

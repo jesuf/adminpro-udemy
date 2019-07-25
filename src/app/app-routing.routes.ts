@@ -9,8 +9,7 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
 const appRoutes: Routes = [
     // Esta linea seria necesaria si pages no tuviese como ruta '', de modo que,
     // si por jemplo fuese 'pages', entonces en redirectTo habria que poner '/pages'.
-    //{ path: '', pathMatch: 'full', redirectTo: '/' },
-    
+    // { path: '', pathMatch: 'full', redirectTo: '/' },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: '**', component: NopagefoundComponent }

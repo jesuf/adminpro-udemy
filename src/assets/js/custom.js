@@ -4,17 +4,17 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: js
 */
-$(function() {
+function cargar_scripts() {
     "use strict";
     $(function() {
         $(".preloader").fadeOut();
     });
     jQuery(document).on('click', '.mega-dropdown', function(e) {
-        e.stopPropagation()
+        e.stopPropagation();
     });
     // ============================================================== 
     // This is for the top header part and sidebar part
-    // ==============================================================  
+    // ==============================================================
     var set = function() {
         var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
         var topOffset = 0;
@@ -154,4 +154,4 @@ $(function() {
         $(this).closest('.card').removeClass().slideUp('fast');
     });
 
-});
+}

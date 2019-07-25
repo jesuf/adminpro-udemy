@@ -39,6 +39,5 @@ export class AccountSettingsComponent implements AfterViewInit {
 
     // ponemos la clase working al elemento clickado
     this.settingsService.renderer.addClass(elemento, 'working');
-
   }
 }

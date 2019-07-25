@@ -31,10 +31,11 @@ export class PromesasComponent implements OnInit {
       const intervalo = setInterval(() => {
         contador++;
         if (contador === 3) {
+          clearInterval(intervalo);
           resolve();
           // reject('fallo en la promesa');
-          clearInterval(intervalo);
         }
+        console.log(contador);
       }, 1000);
     });
   }

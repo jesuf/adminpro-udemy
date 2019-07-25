@@ -6,11 +6,11 @@ import { ServicesModule } from '../services.module';
 })
 export class SidebarService {
 
-  menu: any = [
+  menus: any = [
     {
       titulo: 'Principal',
       icono: 'mdi mdi-gauge',
-      submenu: [
+      submenus: [
         { titulo: 'Dashboard', url: '/dashboard' },
         { titulo: 'Barras de progreso', url: '/progress' },
         { titulo: 'Gráficos', url: '/graficas1' },
