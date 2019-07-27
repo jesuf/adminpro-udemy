@@ -12,6 +12,8 @@ export class ProfileComponent implements OnInit {
 
   imagen: File;
   imagenTemp: string;
+  loadingDatos: boolean;
+  loadingImagen: boolean;
 
   constructor(public usuarioService: UsuarioService) { }
 
@@ -20,12 +22,7 @@ export class ProfileComponent implements OnInit {
 
   guardarDatos(formulario: NgForm) {
 
-    Swal.fire({
-      allowOutsideClick: () => !Swal.isLoading(),
-      type: 'info',
-      text: 'Espere por favor...',
-      onBeforeOpen: () => Swal.showLoading()
-    });
+    this.loadingDatos = true;
 
     // aunque no tenemos el campo password, que es obligatorio para crear un objeto Usuario,
     // Angular no sabe lo que estamos mandando a esta funcion y confia en nosotros. Más adelante, en la definicion del método
@@ -37,6 +34,7 @@ export class ProfileComponent implements OnInit {
           type: 'success',
           title: 'Datos actualizados'
         });
+        this.loadingDatos = false;
       },
       err => {
         Swal.fire({
@@ -44,6 +42,7 @@ export class ProfileComponent implements OnInit {
           title: err.status + ' - ' + err.statusText,
           text: err.error.mensaje
         });
+        this.loadingDatos = false;
       }
     );
   }
@@ -71,12 +70,8 @@ export class ProfileComponent implements OnInit {
   }
 
   guardarImagen() {
-    Swal.fire({
-      allowOutsideClick: () => !Swal.isLoading(),
-      type: 'info',
-      text: 'Espere por favor...',
-      onBeforeOpen: () => Swal.showLoading()
-    });
+
+    this.loadingImagen = true;
 
     this.usuarioService.actualizarImagenUsuario(this.imagen).subscribe(
       () => {},
@@ -86,12 +81,14 @@ export class ProfileComponent implements OnInit {
           title: err.status + ' - ' + err.statusText,
           text: err.error.mensaje
         });
+        this.loadingImagen = false;
       },
       () => {
         Swal.fire({
           type: 'success',
           title: 'Imagen actualizada'
         });
+        this.loadingImagen = false;
       }
     );
   }

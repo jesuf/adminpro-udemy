@@ -15,7 +15,7 @@
                             <input type="email" class="form-control" [disabled]="usuarioService.usuario.google" [ngModel]="usuarioService.usuario.email" name="email" placeholder="Correo">
                         </div>
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
-                            <i class="fa fa-save"></i>&nbsp; Actualizar datos
+                            <i class="fa" [ngClass]="{'fa-save': !loadingDatos, 'fa-sync fa-spin': loadingDatos}"></i>&nbsp; Actualizar datos
                         </button>
                     </form>
                 </div>
@@ -39,7 +39,7 @@
                         <img *ngIf="imagenTemp" class="img-thumbnail" [src]="imagenTemp" alt="user">
                     </div>
                     <button type="button" [disabled]="!imagen" (click)="guardarImagen()" class="btn btn-success waves-effect waves-light m-r-10">
-                        <i class="fa fa-save"></i>&nbsp; Actualizar imagen
+                        <i class="fa" [ngClass]="{'fa-save': !loadingImagen, 'fa-sync fa-spin': loadingImagen}"></i>&nbsp; Actualizar imagen
                     </button>
                 </div>
             </div> 
