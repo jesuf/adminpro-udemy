@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [],
-  imports: []
+  imports: [HttpClientModule]
 })
 export class ServicesModule { }

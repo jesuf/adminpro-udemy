@@ -51,7 +51,7 @@ export class RegisterComponent implements OnInit {
 
     Swal.fire({
       allowOutsideClick: () => !Swal.isLoading(),
-      type: 'warning',
+      type: 'info',
       text: 'Espere por favor...',
       onBeforeOpen: () => Swal.showLoading()
     });
@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
       err => {
         Swal.fire({
           type: 'error',
-          title: 'Error',
+          title: err.status + ' - ' + err.statusText,
           text: err.error.mensaje
         });
         console.log(err);

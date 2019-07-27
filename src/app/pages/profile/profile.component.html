@@ -1,0 +1,48 @@
+<div class="card card-body animated fadeIn">
+    <h3 class="box-title m-b-0">Información personal</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="text-muted m-b-30 font-13"> Nombre y correo </p>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <form ngNativeValidate #formulario="ngForm" (submit)="guardarDatos(formulario)">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" class="form-control" [ngModel]="usuarioService.usuario.nombre" name="nombre" placeholder="Nombre">
+                        </div>
+                        <div class="form-group">
+                            <label>Correo</label>
+                            <input type="email" class="form-control" [disabled]="usuarioService.usuario.google" [ngModel]="usuarioService.usuario.email" name="email" placeholder="Correo">
+                        </div>
+                        <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                            <i class="fa fa-save"></i>&nbsp; Actualizar datos
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <p class="text-muted m-b-30 font-13">Imagen de perfil </p>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label>Elige un avatar</label>
+                        <label class="custom-file d-block">
+                            <input type="file" (change)="imagenSeleccionada($event.target.files[0])" class="custom-file-input">
+                            <span class="custom-file-control"></span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Previsualización</label>
+                        <img *ngIf="!imagenTemp" class="img-thumbnail" [src]="usuarioService.usuario.img | imagen" alt="user">
+                        <img *ngIf="imagenTemp" class="img-thumbnail" [src]="imagenTemp" alt="user">
+                    </div>
+                    <button type="button" [disabled]="!imagen" (click)="guardarImagen()" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa fa-save"></i>&nbsp; Actualizar imagen
+                    </button>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
