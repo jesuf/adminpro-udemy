@@ -6,7 +6,6 @@ import { URL_SERVICIOS } from '../../config/config';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { UploadService } from '../upload/upload.service';
-import { ConsoleReporter } from 'jasmine';
 
 @Injectable({
   providedIn: ServicesModule
@@ -23,22 +22,45 @@ export class UsuarioService {
     }
   }
 
+  obtenerUsuarios(desde: number = 0) {
+
+    const url = URL_SERVICIOS + '/usuarios?desde=' + desde;
+
+    return this.httpClient.get(url);
+  }
+  buscarUsuarios(termino: string = '') {
+
+    const url = URL_SERVICIOS + '/busqueda/coleccion/usuarios?termino=' + termino;
+
+    return this.httpClient.get(url);
+  }
+
   crearUsuario(usuario: Usuario) {
 
     const url = URL_SERVICIOS + '/usuarios';
 
     return this.httpClient.post(url, usuario);
   }
+  eliminarUsuario(usuarioId: string) {
+
+    const url = URL_SERVICIOS + '/usuarios/' + usuarioId + '?token=' + this.token;
+
+    return this.httpClient.delete(url);
+  }
+
 
   actualizarDatosUsuario(usuario: Usuario) {
 
-    const url = URL_SERVICIOS + '/usuarios/' + this.usuario._id + '?token=' + this.token;
+    const url = URL_SERVICIOS + '/usuarios/' + usuario._id + '?token=' + this.token;
 
     return this.httpClient.put(url, usuario).pipe(
                                               map((resp: any) => {
-                                                console.log(resp);
-                                                this.usuario = resp.usuarioActualizado;
-                                                localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                                                // si el usuario que hemos actualizado es el nuestro, actualizamos el objeto usuario y
+                                                // lo guardamos en el localStorage
+                                                if (this.usuario._id === usuario._id) {
+                                                  this.usuario = resp.usuarioActualizado;
+                                                  localStorage.setItem('usuario', JSON.stringify(this.usuario));
+                                                }
                                               })
                                             );
   }

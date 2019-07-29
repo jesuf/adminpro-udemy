@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div id="myModal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" #myModal>
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Cuadro de selección de avatar</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Elige un avatar</label>
+                        <div class="input-group">
+                            <div class=" input-group-addon"><i class="ti-image"></i></div>
+                            <label class="custom-file d-block">
+                                <input type="file" (input)="imagenSeleccionada($event)" class="custom-file-input">
+                                <span class="custom-file-control">Elegir archivo...</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Previsualización</label>
+                        <img *ngIf="!imagenTemp" class="img-thumbnail" [src]="imagenRuta | imagen" alt="user">
+                        <img *ngIf="imagenTemp" class="img-thumbnail" [src]="imagenTemp" alt="user">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Cerrar</button>
+                <button type="button" [disabled]="!imagen" (click)="guardarImagen()" class="btn btn-success waves-effect waves-light m-r-10">
+                        <i class="fa" [ngClass]="{'fa-save': !loadingImagen, 'fa-sync fa-spin': loadingImagen}"></i>&nbsp; Actualizar imagen
+                    </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<<!-- div class="modal-backdrop fade show"></div> -->

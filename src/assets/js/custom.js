@@ -153,5 +153,4 @@ function cargar_scripts() {
     $('a[data-action="close"]').on('click', function() {
         $(this).closest('.card').removeClass().slideUp('fast');
     });
-
 }

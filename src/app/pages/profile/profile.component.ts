@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     // Angular no sabe lo que estamos mandando a esta funcion y confia en nosotros. Más adelante, en la definicion del método
     // el hecho de que falte el password en el objeto usuario recibido no es relevante ya que no la utilizamos para nada.
     // Simplemente lo enviamos al servicio PUT, el cual no la requiere.
-    this.usuarioService.actualizarDatosUsuario(formulario.value).subscribe(
+    this.usuarioService.actualizarDatosUsuario({...formulario.value, _id: this.usuarioService.usuario._id}).subscribe(
       () => {
         Swal.fire({
           type: 'success',

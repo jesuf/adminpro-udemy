@@ -1,0 +1,91 @@
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <label>Buscador</label>
+                <div class="input-group">
+                    <div class="input-group-addon"><i class="ti-search"></i></div>
+                    <input #input (keyup)="buscarUsuarios(input.value)" type="text" class="form-control" placeholder="Buscar usuarios..."> 
+                </div>
+                <br><br>
+                <button type="button" class="btn btn-secondary" (click)="desde = 0; cargarUsuarios()">Buscar todos</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row">
+    <div class="col-12">
+
+        <div class="alert alert-info animated fadeIn" *ngIf="loading">
+            <h3 class="text-info"><i class="fa fa-refresh fa-spin"></i> cargando datos...</h3>
+        </div>
+
+        <div class="alert alert-danger animated fadeIn" *ngIf="!loading && error">
+            <h3 class="text-danger"><i class="fa fa-exclamation-triangle"></i> {{error.status}}: {{error.statusText}}</h3>
+            <p>{{error.error.mensaje}}</p>
+        </div>
+    </div>
+</div> -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h3 class="card-title">Mostrando usuarios <small>{{desde}} al {{limite}} de {{registros}}</small></h3>
+
+                <table class="table color-bordered-table inverse-bordered-table hover-table animated fadeIn" *ngIf="registros > 0">
+                    <thead>
+                        <tr class="d-table-row">
+                            <th>Avatar</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Tipo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios" class="d-table-row">
+                            <td>
+                                <a data-toggle="modal" href="#myModal" data-coleccion="usuarios" [attr.data-imagen]="usuario.img" [attr.data-identificador]="usuario._id">
+                                    <img class="img-50 img-rounded" [src]="usuario.img | imagen">
+                                </a>
+                            </td>
+                            <td>{{usuario.nombre}}</td>
+                            <td>{{usuario.email}}</td>
+                            <td>
+                                <select class="custom-select" [(ngModel)]="usuario.role" name="role">
+                                    <option value="ADMIN_ROLE">Administrador</option>
+                                    <option value="USER_ROLE">Usuario</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label class="label label-info" *ngIf="!usuario.google">Normal</label>
+                                <label class="label label-danger" *ngIf="usuario.google">Google</label>
+                            </td>
+                            <td>
+                                <button class="btn btn-success mr-1" (click)="guardarUsuario(usuario)">
+                                    <i class="fa fa-save"></i>
+                                </button>
+                                <button class="btn btn-danger mr-1" (click)="borrarUsuario(usuario)">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+                <div *ngIf="mostrandoTodos">
+                    <button class="btn btn-secondary mr-1" (click)="cambiarDesde(-5)">Anteriores</button>
+                    <button class="btn btn-secondary mr-1" (click)="cambiarDesde(5)">Siguientes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<button type="button" id="myBtn">disparar</button>

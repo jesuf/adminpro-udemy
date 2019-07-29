@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     Swal.fire({
       allowOutsideClick: () => !Swal.isLoading(),
-      type: 'warning',
+      type: 'info',
       text: 'Espere por favor...',
       onBeforeOpen: () => Swal.showLoading()
     });
